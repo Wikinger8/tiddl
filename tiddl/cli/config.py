@@ -23,6 +23,17 @@ class Config(BaseModel):
     enable_cache: bool = True
     debug: bool = False
 
+    class ApiConfig(BaseModel):
+        # seconds between two requests that actually reach the API,
+        # 0 disables throttling
+        min_request_interval: float = 0.25
+        # retries for `429 Too Many Requests`
+        rate_limit_max_retries: int = 8
+        # upper bound for a single backoff wait, in seconds
+        rate_limit_max_backoff: float = 60.0
+
+    api: ApiConfig = ApiConfig()
+
     class MetadataConfig(BaseModel):
         enable: bool = True
         lyrics: bool = False
