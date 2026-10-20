@@ -117,6 +117,12 @@ match_existing_path_case = false
 # (both versions won't be downloaded at a time, it depends on what Tidal returns)
 atmos_filter = "none"
 
+# exit with code 2 when items were skipped because of temporary errors,
+# like a rate limit or a network problem. content that is permanently
+# unavailable, for example when streaming is not allowed, keeps exit code 0.
+# useful for scheduled runs that should retry instead of reporting success.
+fail_on_partial = false
+
 
 [metadata]
 # embed metadata in files
